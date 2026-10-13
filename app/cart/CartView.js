@@ -5,7 +5,7 @@ import Link from "next/link";
 import QtyPicker from "@/components/QtyPicker";
 import { TrashIcon } from "@/components/Icons";
 import { cartTotal, changeQty, removeFromCart, setNote, useCart } from "@/lib/cart";
-import { formatPrice } from "@/lib/products";
+import { formatPrice } from "@/lib/menu";
 
 export default function CartView() {
   const cart = useCart();

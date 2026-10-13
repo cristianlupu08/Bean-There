@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { CheckIcon } from "@/components/Icons";
 import { STATUSES, useOrders } from "@/lib/orders";
-import { formatPrice } from "@/lib/products";
+import { formatPrice } from "@/lib/menu";
 
 export default function MyOrders() {
   const orders = useOrders();

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { formatPrice } from "@/lib/products";
+import { formatPrice } from "@/lib/menu";
 
 export default function ProductCard({ product }) {
   return (

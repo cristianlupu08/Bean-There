@@ -79,4 +79,7 @@ A single Next.js project that is at the same time a website, a web app and a pho
 - **Step 2 done:** Next.js 16 + Tailwind 4 project (JavaScript), public repo: github.com/cristianlupu08/Bean-There (branch `main`).
 - **Step 3 done (plus part of step 6):** all pages, in English, with test data in `lib/products.js` (prices in euro). Cart and orders already work but are stored in the browser (`localStorage`, in `lib/cart.js` and `lib/orders.js`); in step 7 we move them to Supabase. Photos come from Unsplash.
 - **Next.js 16 gotcha:** Cache Components is enabled, so any read of `params`/`searchParams` must be inside a `<Suspense>` (see `app/menu/page.js` and `app/product/[id]/page.js`).
-- **Next step:** step 4, Supabase (needs a Supabase account and the keys in `.env.local`).
+- **Step 11 done early (PWA):** `app/manifest.js`, icons in `public/` and `app/` (generated with a PowerShell System.Drawing script). Install test only possible after deploy (HTTPS).
+- **Step 4 done:** Supabase project `mjgrzrrtimeczpzlyqdw` (Frankfurt). Schema + 15 products from `supabase/setup.sql` (tables `products`, `orders`, `order_items`; RLS on, products readable by everyone, orders locked for now). `.env.local` has `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`. The user runs SQL by pasting it into Supabase SQL Editor.
+- **Step 5 done:** menu, home and product pages read from Supabase via `lib/products.js` (`"use cache"` + `cacheLife("minutes")` + `cacheTag("products")`). Client-safe constants (`CATEGORIES`, `SIZES`, `formatPrice`) are in `lib/menu.js`.
+- **Next step:** step 7, save orders in Supabase (needs a new SQL script run by the user) and customer login.

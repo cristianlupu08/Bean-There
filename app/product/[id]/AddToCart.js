@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { addToCart } from "@/lib/cart";
-import { SIZES, formatPrice } from "@/lib/products";
+import { SIZES, formatPrice } from "@/lib/menu";
 import { CheckIcon } from "@/components/Icons";
 import QtyPicker from "@/components/QtyPicker";
 

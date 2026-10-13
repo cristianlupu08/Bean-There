@@ -2,13 +2,14 @@ import Image from "next/image";
 import Link from "next/link";
 import CartButton from "@/components/CartButton";
 import ProductCard from "@/components/ProductCard";
-import { CATEGORIES, PRODUCTS } from "@/lib/products";
+import { CATEGORIES } from "@/lib/menu";
+import { getProducts } from "@/lib/products";
 
 const HERO_IMAGE =
   "https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=900&q=75&auto=format&fit=crop";
 
-export default function Home() {
-  const popular = PRODUCTS.filter((p) => p.popular);
+export default async function Home() {
+  const popular = (await getProducts()).filter((p) => p.popular);
 
   return (
     <>

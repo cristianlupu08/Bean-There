@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { cartTotal, clearCart, useCart } from "@/lib/cart";
 import { placeOrder } from "@/lib/orders";
-import { formatPrice } from "@/lib/products";
+import { formatPrice } from "@/lib/menu";
 
 const inputClass =
   "mt-2 w-full rounded-2xl border border-bean-light bg-bean p-3.5 text-cream placeholder:text-cream-muted/60 focus:border-caramel focus:outline-none";

@@ -2,7 +2,8 @@ import { Suspense } from "react";
 import Link from "next/link";
 import PageHeader from "@/components/PageHeader";
 import ProductCard from "@/components/ProductCard";
-import { CATEGORIES, PRODUCTS } from "@/lib/products";
+import { CATEGORIES } from "@/lib/menu";
+import { getProducts } from "@/lib/products";
 
 export const metadata = { title: "Menu · Bean There" };
 
@@ -26,8 +27,9 @@ async function MenuFromLink({ searchParams }) {
   return <FilteredMenu selected={selected} />;
 }
 
-function FilteredMenu({ selected = null }) {
-  const products = selected ? PRODUCTS.filter((p) => p.category === selected) : PRODUCTS;
+async function FilteredMenu({ selected = null }) {
+  const all = await getProducts();
+  const products = selected ? all.filter((p) => p.category === selected) : all;
 
   return (
     <>

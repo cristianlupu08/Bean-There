@@ -1,7 +1,7 @@
 "use client";
 
 import { STATUSES, setOrderStatus, useOrders } from "@/lib/orders";
-import { formatPrice } from "@/lib/products";
+import { formatPrice } from "@/lib/menu";
 
 export default function AdminOrders() {
   const orders = useOrders();

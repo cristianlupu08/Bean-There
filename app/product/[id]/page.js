@@ -3,16 +3,17 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import PageHeader from "@/components/PageHeader";
 import AddToCart from "./AddToCart";
-import { PRODUCTS, getProduct } from "@/lib/products";
+import { getProduct, getProducts } from "@/lib/products";
 
 // Tell Next.js which products exist, so their pages are built ahead of time.
-export function generateStaticParams() {
-  return PRODUCTS.map((product) => ({ id: product.id }));
+export async function generateStaticParams() {
+  const products = await getProducts();
+  return products.map((product) => ({ id: product.id }));
 }
 
 export async function generateMetadata({ params }) {
   const { id } = await params;
-  const product = getProduct(id);
+  const product = await getProduct(id);
   return { title: product ? `${product.name} · Bean There` : "Product not found" };
 }
 
@@ -28,7 +29,7 @@ export default function ProductPage({ params }) {
 
 async function ProductDetails({ params }) {
   const { id } = await params;
-  const product = getProduct(id);
+  const product = await getProduct(id);
   if (!product) notFound();
 
   return (
