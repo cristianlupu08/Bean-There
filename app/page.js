@@ -1,69 +1,93 @@
 import Image from "next/image";
+import Link from "next/link";
+import CartButton from "@/components/CartButton";
+import ProductCard from "@/components/ProductCard";
+import { CATEGORIES, PRODUCTS } from "@/lib/products";
+
+const HERO_IMAGE =
+  "https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=900&q=75&auto=format&fit=crop";
 
 export default function Home() {
+  const popular = PRODUCTS.filter((p) => p.popular);
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
+    <>
+      <header className="flex items-center justify-between py-4">
+        <div>
+          <p className="text-sm text-cream-muted">Hi! What are you drinking today?</p>
+          <p className="font-display text-2xl">Bean There</p>
+        </div>
+        <CartButton />
+      </header>
+
+      {/* Welcome */}
+      <section className="relative mt-2 overflow-hidden rounded-3xl shadow-xl shadow-black/40">
         <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
+          src={HERO_IMAGE}
+          alt="Cups of coffee with latte art on a wooden table"
+          width={900}
+          height={1100}
           priority
+          className="h-80 w-full object-cover"
         />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.js
-            </code>{" "}
-            file.
+        <div className="absolute inset-0 bg-gradient-to-t from-espresso via-espresso/50 to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 p-6">
+          <h1 className="font-display text-3xl leading-tight">
+            Great coffee,
+            <br />
+            no queue.
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+          <p className="mt-2 text-sm text-cream-muted">
+            Order from your phone, we brew it, you just pick it up.
           </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            href="/menu"
+            className="mt-4 inline-block rounded-full bg-caramel px-6 py-3 font-semibold text-espresso transition-colors hover:bg-caramel-dark"
           >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+            See the menu
+          </Link>
         </div>
-      </main>
-    </div>
+      </section>
+
+      {/* Categories */}
+      <section className="mt-8">
+        <h2 className="font-display text-xl">Categories</h2>
+        <div className="mt-3 flex gap-2 overflow-x-auto pb-1">
+          {CATEGORIES.map((category) => (
+            <Link
+              key={category}
+              href={`/menu?category=${encodeURIComponent(category)}`}
+              className="shrink-0 rounded-full bg-bean px-5 py-2.5 text-sm transition-colors hover:bg-bean-light"
+            >
+              {category}
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      {/* Popular products */}
+      <section className="mt-8">
+        <div className="flex items-baseline justify-between">
+          <h2 className="font-display text-xl">Most loved</h2>
+          <Link href="/menu" className="text-sm text-caramel hover:underline">
+            See all
+          </Link>
+        </div>
+        <div className="mt-3 grid grid-cols-2 gap-4">
+          {popular.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))}
+        </div>
+      </section>
+
+      {/* Link to About us */}
+      <Link
+        href="/about"
+        className="mt-8 block rounded-3xl bg-bean p-5 transition-colors hover:bg-bean-light"
+      >
+        <p className="font-display text-lg">About us, hours and location</p>
+        <p className="mt-1 text-sm text-cream-muted">Mon–Fri 7:30–20:00 · 12 Roast Street</p>
+      </Link>
+    </>
   );
 }

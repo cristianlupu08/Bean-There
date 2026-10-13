@@ -11,6 +11,15 @@ const nextConfig = {
       },
     },
   },
+  // Pozele cu produse vin de pe Unsplash (până le punem în Supabase).
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com",
+      },
+    ],
+  },
 };
 
 export default nextConfig;
