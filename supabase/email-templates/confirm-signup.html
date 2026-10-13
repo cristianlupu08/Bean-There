@@ -1,0 +1,39 @@
+<!--
+  Bean There: "Confirm signup" email.
+  Paste into Supabase → Authentication → Emails → Templates → Confirm signup → Source (HTML).
+  Subject: Confirm your Bean There account ☕
+-->
+<!doctype html>
+<html lang="en">
+  <body style="margin:0; padding:0; background:#0e1915; font-family:Arial, Helvetica, sans-serif;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#0e1915; padding:32px 16px;">
+      <tr>
+        <td align="center">
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:480px; background:#172520; border-radius:24px; padding:40px 32px;">
+            <tr>
+              <td align="center">
+                <img src="https://beantherecafe.vercel.app/icon-192.png" width="72" height="72" alt="Bean There" style="display:block; border-radius:18px;" />
+                <h1 style="margin:24px 0 8px; font-family:Georgia, 'Times New Roman', serif; font-size:28px; font-weight:normal; color:#f4ead9;">
+                  Welcome to Bean There
+                </h1>
+                <p style="margin:0 0 28px; font-size:15px; line-height:1.6; color:#aebbb0;">
+                  You're one tap away from ordering great coffee with no queue.
+                  Confirm your email to finish creating your account.
+                </p>
+                <a href="{{ .ConfirmationURL }}" style="display:inline-block; background:#cf8d50; color:#0e1915; text-decoration:none; font-weight:bold; font-size:16px; padding:14px 32px; border-radius:999px;">
+                  Confirm your email
+                </a>
+                <p style="margin:28px 0 0; font-size:12px; line-height:1.6; color:#aebbb0;">
+                  The link works once. If you didn't create a Bean There account, you can ignore this email.
+                </p>
+              </td>
+            </tr>
+          </table>
+          <p style="margin:20px 0 0; font-size:12px; color:#6f7d73;">
+            Bean There · 12 Roast Street, Bucharest
+          </p>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>
