@@ -2,11 +2,11 @@
 
 import Link from "next/link";
 import { CheckIcon } from "@/components/Icons";
-import { useOrders } from "@/lib/orders";
+import { useLastOrder } from "@/lib/orders";
 import { formatPrice } from "@/lib/menu";
 
 export default function OrderPlaced() {
-  const [latest] = useOrders();
+  const latest = useLastOrder();
 
   return (
     <div className="flex min-h-[75vh] flex-col items-center justify-center text-center">
@@ -20,7 +20,7 @@ export default function OrderPlaced() {
           <p className="mt-2 text-cream-muted">Thank you, {latest.name}! We&apos;re on it.</p>
           <div className="mt-6 rounded-3xl bg-surface px-10 py-5">
             <p className="text-sm text-cream-muted">Order number</p>
-            <p className="font-display text-4xl text-caramel">#{latest.number}</p>
+            <p className="font-display text-4xl text-caramel">#{latest.id}</p>
             <p className="mt-1 text-sm text-cream-muted">Total: {formatPrice(latest.total)}</p>
           </div>
         </>

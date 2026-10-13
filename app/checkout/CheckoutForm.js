@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { cartTotal, clearCart, useCart } from "@/lib/cart";
@@ -12,6 +13,13 @@ const inputClass =
 export default function CheckoutForm() {
   const cart = useCart();
   const router = useRouter();
+  // "idle" → "sending" → "done" (or back to "idle" with an error message)
+  const [status, setStatus] = useState("idle");
+  const [error, setError] = useState(null);
+
+  if (status === "done") {
+    return <p className="mt-16 text-center text-cream-muted">Order placed, one moment…</p>;
+  }
 
   if (cart.items.length === 0) {
     return (
@@ -24,12 +32,20 @@ export default function CheckoutForm() {
     );
   }
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
     const form = new FormData(event.currentTarget);
-    placeOrder({ name: form.get("name").trim(), phone: form.get("phone").trim() }, cart);
-    clearCart();
-    router.push("/checkout/done");
+    setStatus("sending");
+    setError(null);
+    try {
+      await placeOrder({ name: form.get("name").trim(), phone: form.get("phone").trim() }, cart);
+      setStatus("done");
+      clearCart();
+      router.push("/checkout/done");
+    } catch (err) {
+      setError(err.message);
+      setStatus("idle");
+    }
   }
 
   return (
@@ -77,11 +93,18 @@ export default function CheckoutForm() {
         <p className="mt-2 text-xs text-cream-muted">Pay at pickup, cash or card.</p>
       </div>
 
+      {error && (
+        <p role="alert" className="mt-6 rounded-2xl bg-red-500/10 p-4 text-sm text-red-300">
+          {error}
+        </p>
+      )}
+
       <button
         type="submit"
-        className="mt-6 w-full rounded-full bg-caramel py-4 font-semibold text-ink transition-colors hover:bg-caramel-dark"
+        disabled={status === "sending"}
+        className="mt-6 w-full rounded-full bg-caramel py-4 font-semibold text-ink transition-colors hover:bg-caramel-dark disabled:opacity-60"
       >
-        Place order
+        {status === "sending" ? "Placing order…" : "Place order"}
       </button>
     </form>
   );
