@@ -1,83 +1,82 @@
-# Proiect Bean There
+# Bean There Project
 
-## Cine sunt și cum lucrăm
-- Sunt începător și învăț dezvoltare web. Proiectul e un demo pentru portofoliu: vreau să-i arăt fratelui meu, care lucrează în domeniu, că pot face un proiect complet, ca să mă angajez.
-- Lucrez pe Windows 11, cam 2 ore pe zi. Am VS Code, GitHub Desktop și cont GitHub. Am mai folosit puțin N8N și Vercel.
-- Vorbește-mi în română, simplu, pe înțelesul unui începător.
-- **Aplicația e 100% în engleză:** texte, adrese de pagini, nume de produse, cod și comentarii din cod. Nimic în română în aplicație. Doar discuțiile cu mine sunt în română. Prețurile sunt în **euro** (ex: €3.50).
-- Dacă îți spun „fă tot ce poți”, mergi singur din pas în pas și te oprești doar când ai nevoie de mine (conturi, chei, decizii reale).
-- Lucrăm pas cu pas. Înainte de orice lucru mai mare, propune-mi un plan scurt și așteaptă să confirm.
-- La fiecare pas, explică pe scurt ce faci și de ce.
-- Nu trece la pasul următor până nu confirm eu că pasul curent merge.
-- După fiecare bucată care funcționează, propune-mi un commit pe GitHub, cu un mesaj clar.
-- Nu pune niciodată chei secrete (Supabase, email etc.) în cod sau pe GitHub. Folosește `.env.local`, care e în `.gitignore`.
+## Who I am and how we work
+- I'm a beginner learning web development. This project is a portfolio demo: I want to show my brother, who works in the field, that I can build a complete project, so I can get hired.
+- I work on Windows 11, about 2 hours a day. I have VS Code, GitHub Desktop and a GitHub account. I've used N8N and Vercel a little.
+- **Talk to me in Romanian**, simply, in a way a beginner understands.
+- **The app is 100% in English:** UI text, page URLs, product names, code and code comments. Nothing in Romanian in the app or the repo. Only our conversations are in Romanian. Prices are in **euro** (e.g. €3.50).
+- If I tell you "do everything you can", go step by step on your own and only stop when you need me (accounts, keys, real decisions).
+- We work step by step. Before any bigger piece of work, propose a short plan and wait for my confirmation.
+- At each step, briefly explain what you're doing and why.
+- Don't move on to the next step until I confirm the current one works.
+- After each piece that works, propose a GitHub commit with a clear message (in English).
+- Never put secret keys (Supabase, email etc.) in the code or on GitHub. Use `.env.local`, which is in `.gitignore`.
 
-## Ce construim
-Un singur proiect Next.js care e în același timp site, aplicație web și aplicație de telefon, pentru cafeneaua fictivă „Bean There”. Clienții comandă cafea online și o **ridică de la cafenea** (fără livrare).
+## What we're building
+A single Next.js project that is at the same time a website, a web app and a phone app, for the fictional coffee shop "Bean There". Customers order coffee online and **pick it up at the café** (no delivery).
 
-## Funcționalități
-- Site de prezentare: pagina principală, despre noi, program, locație.
-- Meniu: produsele vin din baza de date Supabase, cu categorii (Cafea, Ceai, Suc, Prăjituri).
-- Mărimi pentru băuturi (250 / 350 / 450 ml), fiecare cu un preț în plus.
-- Cont și login pentru clienți (Supabase Auth).
-- Coș de cumpărături: adaugă, modifică cantitatea, șterge, notă opțională, vezi totalul.
-- Formular de comandă: nume și telefon, salvează comanda și produsele în Supabase.
-- Urmărire comandă: listă de stări (Comandă primită → Se prepară → Gata de ridicare), fără hartă.
-- Automatizare N8N: la o comandă nouă, clientul primește email de confirmare, iar eu primesc email cu comanda.
-- Panou admin protejat cu parolă: văd toate comenzile și schimb starea (inclusiv „gata”).
-- Deploy pe Vercel: link public.
-- PWA: se poate adăuga pe ecranul telefonului, cu iconiță.
-- APK Android (cu Capacitor): pe site e un buton „Descarcă aplicația” care descarcă APK-ul direct din GitHub Releases. Pe iPhone, butonul arată instrucțiunile pentru PWA.
+## Features
+- Presentation site: home page, about us, opening hours, location.
+- Menu: products come from the Supabase database, with categories (Coffee, Tea, Juice, Pastries).
+- Drink sizes (250 / 350 / 450 ml), each with an extra price.
+- Customer account and login (Supabase Auth).
+- Shopping cart: add, change quantity, remove, optional note, see the total.
+- Checkout form: name and phone, saves the order and its items in Supabase.
+- Order tracking: a list of statuses (Order received → Preparing → Ready for pickup), no map.
+- N8N automation: on a new order, the customer gets a confirmation email and I get an email with the order.
+- Password-protected admin panel: I see all orders and change their status (including "ready").
+- Deploy on Vercel: public link.
+- PWA: can be added to the phone's home screen, with an icon.
+- Android APK (with Capacitor): the site has a "Download the app" button that downloads the APK directly from GitHub Releases. On iPhone, the button shows the PWA install instructions.
 
-## Stil vizual (decis pe baza screenshot-ului de inspirație)
-- Temă întunecată: fundal maro-negru, text și detalii crem, butoane maro-caramel cu colțuri rotunjite.
-- Poze mari cu cafea, carduri cu umbre fine, aspect modern și curat.
-- Gândit întâi pentru telefon. Bară de navigare jos: Acasă · Meniu · Comenzi · Profil.
-- Ecrane inspirate din design: bun venit, pagina principală, detalii produs, coș, confirmare comandă, stare comandă.
+## Visual style (based on the inspiration screenshot)
+- Dark theme: brown-black background, cream text and details, caramel-brown buttons with rounded corners.
+- Large coffee photos, cards with soft shadows, modern and clean look.
+- Mobile first. Bottom navigation bar: Home · Menu · Orders · Profile.
+- Screens inspired by the design: welcome, home, product details, cart, order confirmation, order status.
 
-## Harta paginilor (construită la pasul 3)
+## Page map (built in step 3)
 ```
-/               → Pagina principală (bun venit + categorii + produse populare)
-/menu           → Meniul complet, cu filtre pe categorii (?category=Coffee)
-/product/[id]   → Detalii produs: mărime, cantitate, „Add to cart”
-/cart           → Coșul: cantități, șterge, notă, total, „Checkout”
-/checkout       → Formular: nume + telefon
-/checkout/done  → „Order placed!” + numărul comenzii
-/orders         → Starea comenzilor
-/about          → Despre noi, program, locație
-/login          → Cont client
-/admin          → Panou admin (încă neprotejat, parola la pasul 9)
+/               → Home (welcome + categories + popular products)
+/menu           → Full menu with category filters (?category=Coffee)
+/product/[id]   → Product details: size, quantity, "Add to cart"
+/cart           → Cart: quantities, remove, note, total, "Checkout"
+/checkout       → Form: name + phone
+/checkout/done  → "Order placed!" + order number
+/orders         → Order status
+/about          → About us, opening hours, location
+/login          → Customer account
+/admin          → Admin panel (not protected yet, password in step 9)
 ```
-Categorii în aplicație: Coffee, Tea, Juice, Pastries. Stări: Order received → Preparing → Ready for pickup.
 
 ## Stack
-- Next.js, cu Tailwind pentru stiluri
-- Supabase: bază de date și autentificare
-- N8N: automatizări și emailuri
-- GitHub: codul
-- Vercel: publicare online
-- Capacitor: aplicația Android
+- Next.js, with Tailwind for styling
+- Supabase: database and authentication
+- N8N: automations and emails
+- GitHub: code
+- Vercel: hosting
+- Capacitor: Android app
 
-## Ordinea pașilor
-1. Planificarea: paginile și legăturile dintre ele
-2. Setup: proiect Next.js plus repository GitHub
-3. Design: pagini statice cu date false
-4. Supabase: tabelele products și orders, plus produse de test
-5. Meniul afișat din baza de date
-6. Coșul de cumpărături
-7. Login și trimiterea comenzii în Supabase
-8. Fluxul N8N pentru emailuri
-9. Panoul admin
-10. Deploy pe Vercel
+## Order of steps
+1. Planning: pages and how they link together
+2. Setup: Next.js project plus GitHub repository
+3. Design: static pages with fake data
+4. Supabase: `products` and `orders` tables, plus test products
+5. Menu loaded from the database
+6. Shopping cart
+7. Login and saving orders in Supabase
+8. N8N email flow
+9. Admin panel
+10. Deploy on Vercel
 11. PWA
-12. APK Android și butonul „Descarcă aplicația”
+12. Android APK and the "Download the app" button
 
-## Unde am rămas
-(Actualizează secțiunea asta la finalul fiecărei sesiuni: ce s-a terminat și care e următorul pas.)
+## Where we left off
+(Update this section at the end of each session: what's done and what the next step is.)
 
-- **2026-10-13:** Am stabilit designul (temă întunecată, după screenshot), ridicare în loc de livrare, stări în loc de hartă și mărimi de la început. Harta paginilor e propusă, o confirmăm după ce vedem paginile la pasul 3.
-- **Rezolvat:** Git (2.56), Node.js (24.21) și npm (11.19) sunt instalate. Merg în PowerShell; în terminalul Bash al lui Claude Code nu sunt găsite, deci comenzile se rulează prin PowerShell.
-- **Pasul 2 gata:** proiect Next.js 16 + Tailwind 4 (JavaScript), repo public: github.com/cristianlupu08/Bean-There (ramura `main`).
-- **Pasul 3 gata (plus o parte din 6):** toate paginile, în engleză, cu date de test în `lib/products.js`. Coșul și comenzile merg deja, dar sunt salvate în browser (`localStorage`, în `lib/cart.js` și `lib/orders.js`); la pasul 7 le mutăm în Supabase. Pozele vin de pe Unsplash.
-- **Atenție Next.js 16:** Cache Components e activat, așa că orice citire din `params`/`searchParams` trebuie pusă într-un `<Suspense>` (vezi `app/menu/page.js` și `app/product/[id]/page.js`).
-- **Următorul pas:** pasul 4, Supabase (trebuie cont Supabase și cheile puse în `.env.local`).
+- **2026-10-13:** Design decided (dark theme, based on the screenshot), pickup instead of delivery, statuses instead of a map, sizes from the start.
+- **Tools:** Git (2.56), Node.js (24.21) and npm (11.19) are installed. They work in PowerShell; the Claude Code Bash terminal can't find them, so run commands through PowerShell. `git push` from Claude Code fails (no credentials), so I push with GitHub Desktop ("Push origin").
+- **Step 2 done:** Next.js 16 + Tailwind 4 project (JavaScript), public repo: github.com/cristianlupu08/Bean-There (branch `main`).
+- **Step 3 done (plus part of step 6):** all pages, in English, with test data in `lib/products.js` (prices in euro). Cart and orders already work but are stored in the browser (`localStorage`, in `lib/cart.js` and `lib/orders.js`); in step 7 we move them to Supabase. Photos come from Unsplash.
+- **Next.js 16 gotcha:** Cache Components is enabled, so any read of `params`/`searchParams` must be inside a `<Suspense>` (see `app/menu/page.js` and `app/product/[id]/page.js`).
+- **Next step:** step 4, Supabase (needs a Supabase account and the keys in `.env.local`).
