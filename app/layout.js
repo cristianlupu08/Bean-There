@@ -1,4 +1,5 @@
 import { Geist, Playfair_Display } from "next/font/google";
+import AuthLinkHandler from "@/components/AuthLinkHandler";
 import BottomNav from "@/components/BottomNav";
 import SideDecor from "@/components/SideDecor";
 import TopNav from "@/components/TopNav";
@@ -34,6 +35,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${geistSans.variable} ${playfair.variable} h-full antialiased`}>
       <body className="min-h-full font-sans">
+        <AuthLinkHandler />
         <SideDecor />
         <TopNav />
         {/* Mobile first: a narrow column on phones, a wide layout on computers. */}

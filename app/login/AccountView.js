@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useSyncExternalStore } from "react";
 import Link from "next/link";
 import { signIn, signOut, signUp, useUser } from "@/lib/auth";
 import { UserIcon } from "@/components/Icons";
@@ -10,12 +10,51 @@ const inputClass =
 
 export default function AccountView() {
   const { user, ready } = useUser();
+  const linkError = useLinkError();
 
   if (!ready) {
     return <p className="mt-16 text-center text-cream-muted">Loading…</p>;
   }
 
-  return user ? <SignedIn user={user} /> : <AuthForm />;
+  return (
+    <>
+      {linkError && !user && <LinkErrorNotice code={linkError} />}
+      {user ? <SignedIn user={user} /> : <AuthForm />}
+    </>
+  );
+}
+
+// Reads an error left in the URL by an email confirmation link (e.g. #error_code=otp_expired).
+function subscribeToHash(callback) {
+  window.addEventListener("hashchange", callback);
+  return () => window.removeEventListener("hashchange", callback);
+}
+
+function useLinkError() {
+  const hash = useSyncExternalStore(subscribeToHash, () => window.location.hash, () => "");
+  const params = new URLSearchParams(hash.replace(/^#/, ""));
+  return params.get("error_code") || params.get("error");
+}
+
+function LinkErrorNotice({ code }) {
+  function dismiss() {
+    history.replaceState(null, "", window.location.pathname);
+    window.dispatchEvent(new HashChangeEvent("hashchange"));
+  }
+
+  return (
+    <div role="alert" className="mt-4 rounded-2xl bg-caramel/15 p-4 text-sm text-cream-muted">
+      <p className="font-semibold text-cream">This email link can&apos;t be used anymore</p>
+      <p className="mt-1">
+        {code === "otp_expired"
+          ? "It was already used or has expired. If you already confirmed your email, just sign in below."
+          : "Something went wrong with the link. Try signing in, or sign up again to get a new link."}
+      </p>
+      <button type="button" onClick={dismiss} className="mt-2 font-semibold text-caramel hover:underline">
+        OK
+      </button>
+    </div>
+  );
 }
 
 function SignedIn({ user }) {
