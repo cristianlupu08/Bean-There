@@ -3,6 +3,8 @@
 A coffee shop ordering app: customers browse the menu, order from their phone and **pick up at the café**, with no queue.
 One Next.js codebase works as a website, an installable web app (PWA) and an Android app.
 
+**Live demo: [bean-there-blush.vercel.app](https://bean-there-blush.vercel.app)**
+
 > Portfolio project, built step by step while learning full-stack web development.
 
 ## Features
@@ -83,7 +85,7 @@ public/              App icons
 - [x] Customer accounts
 - [x] Password-protected admin panel
 - [x] PWA
-- [ ] Public deployment on Vercel
+- [x] Public deployment on Vercel
 - [ ] Order confirmation emails with N8N
 - [ ] Android app (Capacitor) with a "Download the app" button
 
