@@ -88,4 +88,5 @@ A single Next.js project that is at the same time a website, a web app and a pho
 - **Testing tip:** Supabase rejects secret keys from PowerShell (`Invoke-RestMethod` looks like a browser). Test server-side calls with a Node script that uses `process.loadEnvFile(".env.local")`.
 - **Step 10 done:** live at https://bean-there-blush.vercel.app (Vercel project `bean-there`, auto-deploys on every push to `main`). The 4 env vars are set in Vercel → Settings → Environment Variables; the user chose a new admin password there.
 - **Waiting on the user:** Supabase → Authentication → URL Configuration: Site URL = the Vercel link, Redirect URLs = `https://bean-there-blush.vercel.app/**` and `http://localhost:3000/**`. Then test PWA install on a phone.
+- **"Get the app" button added early** (`components/InstallApp.js`): home page card + TopNav. Android/Chrome/Edge: native PWA install prompt (`beforeinstallprompt`); iPhone: step-by-step dialog; hidden when already installed. In step 12, Android should download the APK from GitHub Releases instead.
 - **Next step:** step 8 (N8N emails), then step 12 (Android APK).

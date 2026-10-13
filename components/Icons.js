@@ -101,6 +101,25 @@ export function PinIcon(props) {
   );
 }
 
+export function DownloadIcon(props) {
+  return (
+    <svg {...base} {...props}>
+      <path d="M12 4v11M7 10.5 12 15.5l5-5" />
+      <path d="M5 19h14" />
+    </svg>
+  );
+}
+
+// The iPhone "Share" icon: a box with an arrow pointing up.
+export function ShareIcon(props) {
+  return (
+    <svg {...base} {...props}>
+      <path d="M12 3v12M8 7l4-4 4 4" />
+      <path d="M8 11H6v10h12V11h-2" />
+    </svg>
+  );
+}
+
 export function PhoneIcon(props) {
   return (
     <svg {...base} {...props}>

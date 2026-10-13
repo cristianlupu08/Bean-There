@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import CartButton from "./CartButton";
+import InstallButton from "./InstallApp";
 import { CupIcon } from "./Icons";
 import { NAV_LINKS } from "./BottomNav";
 
@@ -36,6 +37,7 @@ export default function TopNav() {
           })}
         </nav>
 
+        <InstallButton className="flex items-center gap-2 rounded-full border border-surface-light px-4 py-2 text-sm transition-colors hover:bg-surface" />
         <CartButton />
       </div>
     </header>

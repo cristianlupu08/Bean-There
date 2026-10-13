@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import CartButton from "@/components/CartButton";
+import { InstallCard } from "@/components/InstallApp";
 import ProductCard from "@/components/ProductCard";
 import { CATEGORIES } from "@/lib/menu";
 import { getProducts } from "@/lib/products";
@@ -96,10 +97,13 @@ export default async function Home() {
         </div>
       </section>
 
+      {/* Install the app (hidden if already installed) */}
+      <InstallCard />
+
       {/* Link to About us */}
       <Link
         href="/about"
-        className="mt-8 block rounded-3xl bg-surface p-5 transition-colors hover:bg-surface-light md:mt-16 md:flex md:items-center md:justify-between md:p-8"
+        className="mt-4 block rounded-3xl bg-surface p-5 transition-colors hover:bg-surface-light md:mt-16 md:flex md:items-center md:justify-between md:p-8"
       >
         <p className="font-display text-lg md:text-2xl">About us, hours and location</p>
         <p className="mt-1 text-sm text-cream-muted md:mt-0">Mon–Fri 7:30–20:00 · 12 Roast Street</p>
