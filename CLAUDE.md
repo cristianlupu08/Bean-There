@@ -30,9 +30,10 @@ A single Next.js project that is at the same time a website, a web app and a pho
 - Android APK (with Capacitor): the site has a "Download the app" button that downloads the APK directly from GitHub Releases. On iPhone, the button shows the PWA install instructions.
 
 ## Visual style (based on the inspiration screenshot)
-- Dark theme: brown-black background, cream text and details, caramel-brown buttons with rounded corners.
+- Dark theme: **deep forest green background** (`ink` #0e1915, cards `surface` #172520), cream text, caramel buttons with rounded corners. I tried brown and light gray backgrounds; the green stays (decided 2026-10-13).
+- Color tokens are in `app/globals.css`: `ink`, `surface`, `surface-light`, `cream`, `cream-muted`, `caramel`, `caramel-dark`.
 - Large coffee photos, cards with soft shadows, modern and clean look.
-- Mobile first. Bottom navigation bar: Home · Menu · Orders · Profile.
+- Mobile first, but must also look good on computers: on phones a bottom navigation bar (Home · Menu · Orders · Profile), on `md+` a top nav (`components/TopNav.js`), wide layouts (3–4 product columns, two-column product/cart/about pages), and floating coffee beans on the sides on `xl+` (`components/SideDecor.js`).
 - Screens inspired by the design: welcome, home, product details, cart, order confirmation, order status.
 
 ## Page map (built in step 3)

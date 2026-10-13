@@ -36,21 +36,26 @@ async function ProductDetails({ params }) {
     <>
       <PageHeader title={product.category} backHref="/menu" />
 
-      <div className="relative aspect-[4/3] overflow-hidden rounded-3xl shadow-xl shadow-black/40">
-        <Image
-          src={product.image}
-          alt={product.name}
-          fill
-          priority
-          sizes="(max-width: 448px) 100vw, 448px"
-          className="object-cover"
-        />
+      {/* Stacked on phones, photo and details side by side on computers */}
+      <div className="md:grid md:grid-cols-2 md:items-start md:gap-12">
+        <div className="relative aspect-[4/3] overflow-hidden rounded-3xl shadow-xl shadow-black/40 md:aspect-square">
+          <Image
+            src={product.image}
+            alt={product.name}
+            fill
+            priority
+            sizes="(max-width: 768px) 100vw, 560px"
+            className="object-cover"
+          />
+        </div>
+
+        <div>
+          <h2 className="mt-5 font-display text-3xl md:mt-0 md:text-5xl">{product.name}</h2>
+          <p className="mt-2 leading-relaxed text-cream-muted md:mt-4 md:text-lg">{product.description}</p>
+
+          <AddToCart product={product} />
+        </div>
       </div>
-
-      <h2 className="mt-5 font-display text-3xl">{product.name}</h2>
-      <p className="mt-2 leading-relaxed text-cream-muted">{product.description}</p>
-
-      <AddToCart product={product} />
     </>
   );
 }
@@ -58,10 +63,14 @@ async function ProductDetails({ params }) {
 function ProductSkeleton() {
   return (
     <div className="animate-pulse">
-      <div className="h-[76px]" />
-      <div className="aspect-[4/3] rounded-3xl bg-bean" />
-      <div className="mt-5 h-9 w-2/3 rounded-xl bg-bean" />
-      <div className="mt-3 h-4 w-full rounded bg-bean" />
+      <div className="h-[76px] md:h-[104px]" />
+      <div className="md:grid md:grid-cols-2 md:gap-12">
+        <div className="aspect-[4/3] rounded-3xl bg-surface md:aspect-square" />
+        <div>
+          <div className="mt-5 h-9 w-2/3 rounded-xl bg-surface md:mt-0" />
+          <div className="mt-3 h-4 w-full rounded bg-surface" />
+        </div>
+      </div>
     </div>
   );
 }

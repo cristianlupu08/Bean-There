@@ -15,30 +15,33 @@ export default function AboutPage() {
     <>
       <PageHeader title="About us" />
 
-      <div className="relative aspect-[16/10] overflow-hidden rounded-3xl shadow-xl shadow-black/40">
-        <Image
-          src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=900&q=75&auto=format&fit=crop"
-          alt="Inside the café, with warm lights and a CAFE sign"
-          fill
-          priority
-          sizes="(max-width: 448px) 100vw, 448px"
-          className="object-cover"
-        />
+      {/* Photo and story side by side on computers */}
+      <div className="md:grid md:grid-cols-2 md:items-center md:gap-12">
+        <div className="relative aspect-[16/10] overflow-hidden rounded-3xl shadow-xl shadow-black/40 md:aspect-[4/3]">
+          <Image
+            src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=1200&q=75&auto=format&fit=crop"
+            alt="Inside the café, with warm lights and a CAFE sign"
+            fill
+            priority
+            sizes="(max-width: 768px) 100vw, 560px"
+            className="object-cover"
+          />
+        </div>
+
+        <section className="mt-6 md:mt-0">
+          <h2 className="font-display text-2xl md:text-4xl">Our story</h2>
+          <p className="mt-3 leading-relaxed text-cream-muted md:text-lg">
+            Bean There started with a simple idea: great coffee, made with care, without wasting time in
+            a queue. We roast our beans locally, bake our pastries every morning and only make each drink
+            after you order it.
+          </p>
+          <p className="mt-3 leading-relaxed text-cream-muted md:text-lg">
+            Order from your phone, get an order number and just come pick it up. That&apos;s it.
+          </p>
+        </section>
       </div>
 
-      <section className="mt-6">
-        <h2 className="font-display text-2xl">Our story</h2>
-        <p className="mt-3 leading-relaxed text-cream-muted">
-          Bean There started with a simple idea: great coffee, made with care, without wasting time in
-          a queue. We roast our beans locally, bake our pastries every morning and only make each drink
-          after you order it.
-        </p>
-        <p className="mt-3 leading-relaxed text-cream-muted">
-          Order from your phone, get an order number and just come pick it up. That&apos;s it.
-        </p>
-      </section>
-
-      <section className="mt-8 space-y-3">
+      <section className="mt-8 grid gap-3 md:mt-12 md:grid-cols-3 md:gap-6">
         <InfoCard Icon={ClockIcon} title="Opening hours">
           <ul className="space-y-1">
             {OPENING_HOURS.map((row) => (
@@ -65,7 +68,7 @@ export default function AboutPage() {
 
 function InfoCard({ Icon, title, children }) {
   return (
-    <div className="flex gap-4 rounded-3xl bg-bean p-5">
+    <div className="flex gap-4 rounded-3xl bg-surface p-5">
       <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-caramel/15 text-caramel">
         <Icon className="h-5 w-5" />
       </span>

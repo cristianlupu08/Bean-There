@@ -6,14 +6,14 @@ export default function ProductCard({ product }) {
   return (
     <Link
       href={`/product/${product.id}`}
-      className="group block overflow-hidden rounded-3xl bg-bean shadow-lg shadow-black/30 transition-colors hover:bg-bean-light"
+      className="group block overflow-hidden rounded-3xl bg-surface shadow-lg shadow-black/30 transition-colors hover:bg-surface-light"
     >
       <div className="relative aspect-square overflow-hidden">
         <Image
           src={product.image}
           alt={product.name}
           fill
-          sizes="(max-width: 448px) 50vw, 220px"
+          sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 280px"
           className="object-cover transition-transform duration-300 group-hover:scale-105"
         />
       </div>

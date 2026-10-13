@@ -1,20 +1,45 @@
 @import "tailwindcss";
 
-/* Café colors: used in classes like bg-espresso, text-cream, bg-caramel etc. */
+/* Theme colors: used in classes like bg-ink, bg-surface, text-cream, bg-caramel etc.
+   A deep forest green background makes the warm coffee photos and caramel buttons stand out. */
 @theme inline {
-  --color-espresso: #1a120d; /* background, brown-black */
-  --color-bean: #261a13; /* cards */
-  --color-bean-light: #34241a; /* card hover, borders */
-  --color-cream: #f3e6d3; /* main text */
-  --color-cream-muted: #b9a48d; /* secondary text */
-  --color-caramel: #c8864a; /* buttons */
-  --color-caramel-dark: #a96c35; /* button hover */
+  --color-ink: #0e1915; /* page background, deep forest green */
+  --color-surface: #172520; /* cards */
+  --color-surface-light: #20332a; /* card hover, borders */
+  --color-cream: #f4ead9; /* main text */
+  --color-cream-muted: #aebbb0; /* secondary text */
+  --color-caramel: #cf8d50; /* buttons and accents */
+  --color-caramel-dark: #b47440; /* button hover */
 
   --font-sans: var(--font-geist-sans);
   --font-display: var(--font-playfair);
+
+  /* Decorative animations for the empty space on large screens */
+  --animate-float: float 16s ease-in-out infinite;
+  --animate-drift: drift 24s ease-in-out infinite;
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0) rotate(var(--r, 0deg));
+    }
+    50% {
+      transform: translateY(-36px) rotate(calc(var(--r, 0deg) + 25deg));
+    }
+  }
+
+  @keyframes drift {
+    0%,
+    100% {
+      transform: translate(0, 0) scale(1);
+    }
+    50% {
+      transform: translate(30px, -40px) scale(1.15);
+    }
+  }
 }
 
 body {
-  background: var(--color-espresso);
+  background: var(--color-ink);
   color: var(--color-cream);
 }

@@ -7,7 +7,7 @@ import { placeOrder } from "@/lib/orders";
 import { formatPrice } from "@/lib/menu";
 
 const inputClass =
-  "mt-2 w-full rounded-2xl border border-bean-light bg-bean p-3.5 text-cream placeholder:text-cream-muted/60 focus:border-caramel focus:outline-none";
+  "mt-2 w-full rounded-2xl border border-surface-light bg-surface p-3.5 text-cream placeholder:text-cream-muted/60 focus:border-caramel focus:outline-none";
 
 export default function CheckoutForm() {
   const cart = useCart();
@@ -57,7 +57,7 @@ export default function CheckoutForm() {
         />
       </label>
 
-      <div className="mt-6 rounded-3xl bg-bean p-5">
+      <div className="mt-6 rounded-3xl bg-surface p-5">
         <ul className="space-y-1 text-sm text-cream-muted">
           {cart.items.map((item) => (
             <li key={item.key} className="flex justify-between">
@@ -70,7 +70,7 @@ export default function CheckoutForm() {
           ))}
         </ul>
         {cart.note && <p className="mt-3 text-sm italic text-cream-muted">Note: {cart.note}</p>}
-        <div className="mt-4 flex justify-between border-t border-bean-light pt-4 text-xl font-semibold">
+        <div className="mt-4 flex justify-between border-t border-surface-light pt-4 text-xl font-semibold">
           <span>Total</span>
           <span className="text-caramel">{formatPrice(cartTotal(cart))}</span>
         </div>
@@ -79,7 +79,7 @@ export default function CheckoutForm() {
 
       <button
         type="submit"
-        className="mt-6 w-full rounded-full bg-caramel py-4 font-semibold text-espresso transition-colors hover:bg-caramel-dark"
+        className="mt-6 w-full rounded-full bg-caramel py-4 font-semibold text-ink transition-colors hover:bg-caramel-dark"
       >
         Place order
       </button>

@@ -15,7 +15,7 @@ export default function MyOrders() {
         <p className="mt-2 text-cream-muted">When you order, you&apos;ll see it here and can follow its progress.</p>
         <Link
           href="/menu"
-          className="mt-6 inline-block rounded-full bg-caramel px-6 py-3 font-semibold text-espresso transition-colors hover:bg-caramel-dark"
+          className="mt-6 inline-block rounded-full bg-caramel px-6 py-3 font-semibold text-ink transition-colors hover:bg-caramel-dark"
         >
           Order now
         </Link>
@@ -24,9 +24,9 @@ export default function MyOrders() {
   }
 
   return (
-    <ul className="space-y-4">
+    <ul className="grid gap-4 md:grid-cols-2 md:gap-6 lg:grid-cols-3">
       {orders.map((order) => (
-        <li key={order.number} className="rounded-3xl bg-bean p-5 shadow-lg shadow-black/20">
+        <li key={order.number} className="rounded-3xl bg-surface p-5 shadow-lg shadow-black/20">
           <div className="flex items-baseline justify-between">
             <p className="font-display text-xl">Order #{order.number}</p>
             <p className="font-semibold text-caramel">{formatPrice(order.total)}</p>
@@ -57,13 +57,13 @@ function StatusSteps({ status }) {
             <div className="flex flex-col items-center">
               <span
                 className={`flex h-7 w-7 items-center justify-center rounded-full ${
-                  done ? "bg-caramel text-espresso" : "border-2 border-bean-light"
+                  done ? "bg-caramel text-ink" : "border-2 border-surface-light"
                 }`}
               >
                 {done && <CheckIcon className="h-4 w-4" />}
               </span>
               {!isLast && (
-                <span className={`h-6 w-0.5 ${index < current ? "bg-caramel" : "bg-bean-light"}`} />
+                <span className={`h-6 w-0.5 ${index < current ? "bg-caramel" : "bg-surface-light"}`} />
               )}
             </div>
             <p

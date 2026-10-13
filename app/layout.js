@@ -1,5 +1,7 @@
 import { Geist, Playfair_Display } from "next/font/google";
 import BottomNav from "@/components/BottomNav";
+import SideDecor from "@/components/SideDecor";
+import TopNav from "@/components/TopNav";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -25,15 +27,19 @@ export const metadata = {
 };
 
 export const viewport = {
-  themeColor: "#1a120d",
+  themeColor: "#0e1915",
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${geistSans.variable} ${playfair.variable} h-full antialiased`}>
       <body className="min-h-full font-sans">
-        {/* Mobile first: on large screens the content stays centered. */}
-        <main className="mx-auto min-h-screen max-w-md px-5 pb-28">{children}</main>
+        <SideDecor />
+        <TopNav />
+        {/* Mobile first: a narrow column on phones, a wide layout on computers. */}
+        <main className="relative z-10 mx-auto min-h-screen max-w-md px-5 pb-28 md:max-w-6xl md:px-8 md:pb-20">
+          {children}
+        </main>
         <BottomNav />
       </body>
     </html>

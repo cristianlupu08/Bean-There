@@ -3,7 +3,7 @@
 // The − / + buttons for quantity.
 export default function QtyPicker({ qty, onChange, min = 1, small = false }) {
   const size = small ? "h-8 w-8" : "h-10 w-10";
-  const buttonClass = `flex ${size} items-center justify-center rounded-full bg-bean-light text-lg transition-colors hover:bg-caramel hover:text-espresso disabled:opacity-40 disabled:hover:bg-bean-light disabled:hover:text-cream`;
+  const buttonClass = `flex ${size} items-center justify-center rounded-full bg-surface-light text-lg transition-colors hover:bg-caramel hover:text-ink disabled:opacity-40 disabled:hover:bg-surface-light disabled:hover:text-cream`;
 
   return (
     <div className="flex items-center gap-3">

@@ -48,7 +48,7 @@ async function FilteredMenu({ selected = null }) {
         ))}
       </div>
 
-      <div className="mt-5 grid grid-cols-2 gap-4">
+      <div className="mt-5 grid grid-cols-2 gap-4 sm:grid-cols-3 md:mt-8 md:gap-6 lg:grid-cols-4">
         {products.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}
@@ -63,7 +63,7 @@ function FilterChip({ href, active, children }) {
       href={href}
       scroll={false}
       className={`shrink-0 rounded-full px-5 py-2.5 text-sm transition-colors ${
-        active ? "bg-caramel font-semibold text-espresso" : "bg-bean hover:bg-bean-light"
+        active ? "bg-caramel font-semibold text-ink" : "bg-surface hover:bg-surface-light"
       }`}
     >
       {children}

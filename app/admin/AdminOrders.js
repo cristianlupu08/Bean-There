@@ -16,9 +16,9 @@ export default function AdminOrders() {
       {orders.length === 0 ? (
         <p className="mt-10 text-center text-cream-muted">No orders yet.</p>
       ) : (
-        <ul className="mt-5 space-y-4">
+        <ul className="mt-5 grid gap-4 md:grid-cols-2 md:gap-6 lg:grid-cols-3">
           {orders.map((order) => (
-            <li key={order.number} className="rounded-3xl bg-bean p-5">
+            <li key={order.number} className="rounded-3xl bg-surface p-5">
               <div className="flex items-baseline justify-between">
                 <p className="font-display text-xl">#{order.number}</p>
                 <p className="font-semibold text-caramel">{formatPrice(order.total)}</p>
@@ -44,8 +44,8 @@ export default function AdminOrders() {
                     onClick={() => setOrderStatus(order.number, status.id)}
                     className={`rounded-xl px-2 py-2 text-xs transition-colors ${
                       order.status === status.id
-                        ? "bg-caramel font-semibold text-espresso"
-                        : "bg-bean-light text-cream-muted hover:text-cream"
+                        ? "bg-caramel font-semibold text-ink"
+                        : "bg-surface-light text-cream-muted hover:text-cream"
                     }`}
                   >
                     {status.label}

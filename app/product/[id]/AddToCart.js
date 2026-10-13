@@ -38,7 +38,7 @@ export default function AddToCart({ product }) {
                   className={`rounded-2xl border px-2 py-3 text-center transition-colors ${
                     active
                       ? "border-caramel bg-caramel/15 text-cream"
-                      : "border-bean-light bg-bean text-cream-muted hover:text-cream"
+                      : "border-surface-light bg-surface text-cream-muted hover:text-cream"
                   }`}
                 >
                   <span className="block font-semibold">{option.ml} ml</span>
@@ -71,14 +71,14 @@ export default function AddToCart({ product }) {
         <button
           type="button"
           onClick={handleAdd}
-          className="flex-1 rounded-full bg-caramel py-4 font-semibold text-espresso transition-colors hover:bg-caramel-dark"
+          className="flex-1 rounded-full bg-caramel py-4 font-semibold text-ink transition-colors hover:bg-caramel-dark"
         >
           Add to cart
         </button>
       </div>
 
       {added && (
-        <div className="mt-4 flex items-center justify-between rounded-2xl bg-bean p-4 text-sm">
+        <div className="mt-4 flex items-center justify-between rounded-2xl bg-surface p-4 text-sm">
           <span className="flex items-center gap-2">
             <CheckIcon className="h-5 w-5 text-caramel" />
             Added to cart!
