@@ -1,36 +1,92 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# ☕ Bean There
 
-## Getting Started
+A coffee shop ordering app: customers browse the menu, order from their phone and **pick up at the café**, with no queue.
+One Next.js codebase works as a website, an installable web app (PWA) and an Android app.
 
-First, run the development server:
+> Portfolio project, built step by step while learning full-stack web development.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Features
+
+- **Menu from the database:** products, categories (Coffee, Tea, Juice, Pastries) and photos are stored in Supabase.
+- **Drink sizes:** 250 / 350 / 450 ml, each with its own extra price.
+- **Cart:** add, change quantity, remove, add a note for the barista, see the total.
+- **Checkout:** name and phone; the order is saved in Supabase with a real order number.
+- **Tamper-proof prices:** the browser only sends product ids, sizes and quantities. Prices and totals are calculated by a Postgres function (`place_order`), so they can't be faked.
+- **Order tracking:** Order received → Preparing → Ready for pickup, refreshed automatically.
+- **Guest or account:** guests track orders placed from their device; signed-in customers (Supabase Auth) see their orders on any device.
+- **Admin panel:** password-protected `/admin` page with a signed, httpOnly cookie. Staff see every order and change its status. Database writes use the secret key on the server only.
+- **Mobile first, desktop friendly:** bottom navigation on phones, top navigation and wide layouts on computers, animated coffee beans on wide screens.
+- **PWA:** installable on the phone's home screen with its own icon.
+
+## Tech stack
+
+| Area | Tools |
+| --- | --- |
+| Framework | [Next.js 16](https://nextjs.org) (App Router, Cache Components, Server Actions), React 19 |
+| Styling | Tailwind CSS 4 |
+| Database & auth | [Supabase](https://supabase.com) (Postgres, Row Level Security, Auth) |
+| Hosting | Vercel |
+| Planned | N8N email automation, Android app with Capacitor |
+
+## How it works
+
+```
+Browser ──► Next.js pages ──► Supabase
+              │
+              ├─ Menu pages: read products on the server, cached for a few minutes ("use cache")
+              ├─ Checkout: calls the place_order() database function (prices calculated in Postgres)
+              ├─ Orders: calls get_my_orders() with this device's tracking tokens + the signed-in user
+              └─ /admin: Server Actions with the secret key, behind a password cookie
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Row Level Security is enabled on every table: anyone can read the menu, but orders can only be
+created and read through the database functions above, so customers' phone numbers stay private.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Project structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+app/                 Pages (home, menu, product/[id], cart, checkout, orders, about, login, admin)
+components/          Shared UI (navigation, product card, quantity picker, decorations)
+lib/                 Data and logic (products, cart, orders, auth, Supabase clients, admin auth)
+supabase/            SQL scripts to create the database
+public/              App icons
+```
 
-## Learn More
+## Run it locally
 
-To learn more about Next.js, take a look at the following resources:
+1. Install [Node.js](https://nodejs.org) (LTS) and clone the repository.
+2. Create a free Supabase project, open **SQL Editor** and run, in order:
+   - `supabase/setup.sql` (tables, security rules, test products)
+   - `supabase/02-orders.sql` (ordering and tracking functions)
+3. Create a `.env.local` file in the project folder:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+   ```
+   NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
+   NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=sb_publishable_...
+   SUPABASE_SECRET_KEY=sb_secret_...
+   ADMIN_PASSWORD=choose-a-password
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+4. Install and start:
 
-## Deploy on Vercel
+   ```bash
+   npm install
+   npm run dev
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+5. Open [http://localhost:3000](http://localhost:3000). The admin panel is at `/admin`.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Roadmap
+
+- [x] Pages and design
+- [x] Menu, cart, checkout and order tracking with Supabase
+- [x] Customer accounts
+- [x] Password-protected admin panel
+- [x] PWA
+- [ ] Public deployment on Vercel
+- [ ] Order confirmation emails with N8N
+- [ ] Android app (Capacitor) with a "Download the app" button
+
+## Credits
+
+Product photos from [Unsplash](https://unsplash.com).
