@@ -4,7 +4,7 @@
 - Sunt începător și învăț dezvoltare web. Proiectul e un demo pentru portofoliu: vreau să-i arăt fratelui meu, care lucrează în domeniu, că pot face un proiect complet, ca să mă angajez.
 - Lucrez pe Windows 11, cam 2 ore pe zi. Am VS Code, GitHub Desktop și cont GitHub. Am mai folosit puțin N8N și Vercel.
 - Vorbește-mi în română, simplu, pe înțelesul unui începător.
-- **Aplicația e 100% în engleză:** texte, adrese de pagini, nume de produse, cod și comentarii din cod. Nimic în română în aplicație. Doar discuțiile cu mine sunt în română.
+- **Aplicația e 100% în engleză:** texte, adrese de pagini, nume de produse, cod și comentarii din cod. Nimic în română în aplicație. Doar discuțiile cu mine sunt în română. Prețurile sunt în **euro** (ex: €3.50).
 - Dacă îți spun „fă tot ce poți”, mergi singur din pas în pas și te oprești doar când ai nevoie de mine (conturi, chei, decizii reale).
 - Lucrăm pas cu pas. Înainte de orice lucru mai mare, propune-mi un plan scurt și așteaptă să confirm.
 - La fiecare pas, explică pe scurt ce faci și de ce.
