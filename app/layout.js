@@ -16,6 +16,12 @@ const playfair = Playfair_Display({
 export const metadata = {
   title: "Bean There · Coffee Shop",
   description: "Order your coffee online and pick it up at the café. No queue.",
+  // How the app looks when added to an iPhone home screen.
+  appleWebApp: {
+    capable: true,
+    title: "Bean There",
+    statusBarStyle: "black-translucent",
+  },
 };
 
 export const viewport = {
