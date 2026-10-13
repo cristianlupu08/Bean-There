@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useSyncExternalStore } from "react";
+import { createPortal } from "react-dom";
 import { DownloadIcon, ShareIcon } from "./Icons";
 
 // "Get the app" button.
@@ -89,15 +90,19 @@ export default function InstallButton({ className = "" }) {
   );
 }
 
+// Where the Share button is on iPhone depends on the browser.
+function iosShareLocation() {
+  const ua = navigator.userAgent;
+  if (/CriOS|EdgiOS|FxiOS/.test(ua)) return "next to the address bar, at the top right";
+  return "at the bottom of the screen (or in the ••• menu)";
+}
+
 function InstallHelp({ ios, onClose }) {
   const steps = ios
     ? [
         <>
-          Open this site in <strong className="text-cream">Safari</strong>.
-        </>,
-        <>
           Tap the <strong className="text-cream">Share</strong> button{" "}
-          <ShareIcon className="inline h-5 w-5 align-text-bottom text-caramel" /> at the bottom of the screen.
+          <ShareIcon className="inline h-5 w-5 align-text-bottom text-caramel" /> {iosShareLocation()}.
         </>,
         <>
           Scroll down and tap <strong className="text-cream">Add to Home Screen</strong>.
@@ -119,13 +124,15 @@ function InstallHelp({ ios, onClose }) {
         </>,
       ];
 
-  return (
+  // Rendered directly in <body> (a "portal"), so it always sits above
+  // the page and the bottom navigation bar.
+  return createPortal(
     <div
       role="dialog"
       aria-modal="true"
       aria-labelledby="install-title"
       onClick={onClose}
-      className="fixed inset-0 z-50 flex items-end justify-center bg-black/60 p-4 backdrop-blur-sm sm:items-center"
+      className="fixed inset-0 z-50 flex items-end justify-center bg-black/60 p-4 pb-[max(1rem,env(safe-area-inset-bottom))] backdrop-blur-sm sm:items-center"
     >
       <div
         onClick={(event) => event.stopPropagation()}
@@ -155,6 +162,7 @@ function InstallHelp({ ios, onClose }) {
           Got it
         </button>
       </div>
-    </div>
+    </div>,
+    document.body,
   );
 }
